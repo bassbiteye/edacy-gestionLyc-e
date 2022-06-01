@@ -1,0 +1,47 @@
+<div class="container">
+  <form class="col-sm-3">
+    <div class="form-group">
+      <div class="label">prenom</div>
+      <input type="text" [(ngModel)]="prenom" name="prenom" class="form-control">
+    </div>
+    <div class="form-group">
+        <div class="label">nom</div>
+        <input type="text" [(ngModel)]="nom" name="nom" class="form-control">
+      </div>
+      <div class="form-group">
+        <div class="label">classe</div>
+        <input type="text" [(ngModel)]="classe" name="classe" class="form-control">
+      </div>
+    <div class="form-group">
+        <button type="button" *ngIf="!editMode" (click)="addStudent()" class="btn btn-primary">Ajouter</button>
+        <button type="button" *ngIf="editMode" (click)="editStudent()" class="btn btn-success">Modifier</button>
+    </div>
+  </form>
+  <div class="row filters">
+    <div class="col-md-6">
+        <input type="text" [(ngModel)]="studentName" name="studentName" class="form-control" placeholder="rechercher par nom">
+    </div>
+  </div>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Prenom</td>
+        <td>Nom</td>
+        <td>classe</td>
+        <td>action</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of filterStudent()">
+        <td>{{student.id}}</td>
+        <td>{{ student.prenom }}</td>
+        <td>{{ student.nom }}</td> 
+        <td>{{ student.classe }}</td>
+        <td><button (click)="getEtudent(student)" class="btn btn-success">modifier</button> / 
+            <button (click)="deleteStudent(student.id)" class="btn btn-danger">Supprimer</button></td>
+        
+      </tr>
+    </tbody>
+  </table>
+</div>
